@@ -2,8 +2,8 @@
   "executionRoleArn": "arn:aws:iam::135808928172:role/MyEcsTaskRole",
   "containerDefinitions": [
       {
-          "name": "first",
-          "image": "nginx",
+          "name": "rails",
+          "image": "135808928172.dkr.ecr.ap-northeast-1.amazonaws.com/bar:latest",
           "essential": true,
           "portMappings": [
               {

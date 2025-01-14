@@ -6,5 +6,5 @@ resources:
       Properties:
         TaskDefinition: "<TASK_DEFINITION>"
         LoadBalancerInfo: 
-          ContainerName: "first" 
+          ContainerName: "rails" 
           ContainerPort: "80"
