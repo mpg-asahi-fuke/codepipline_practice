@@ -1,0 +1,2 @@
+class IrReport < ApplicationRecord
+end
