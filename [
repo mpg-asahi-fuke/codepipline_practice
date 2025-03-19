@@ -1,0 +1,10 @@
+# smtp:
+#   user_name: my-smtp-user
+#   password: my-smtp-password
+#
+# aws:
+#   access_key_id: 123
+#   secret_access_key: 345
+
+# Used as the base secret for all MessageVerifiers in Rails, including the one protecting cookies.
+secret_key_base: d0d4313dac06898ab80c57f8f729ee94847b258113ccbabe737b8d8ec69881d5263b0fce3c689ac9fcf15fca825b0a77d905d57f486e99d3da49ef78691c61c7
