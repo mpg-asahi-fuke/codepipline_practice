@@ -12,6 +12,7 @@ class Admin::CompaniesController < ApplicationController
       redirect_to admin_companies_path
     else
       @companies = Company.all
+      pp @company.errors.full_messages
       render :index
     end
   end

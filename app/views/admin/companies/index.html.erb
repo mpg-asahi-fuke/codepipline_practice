@@ -1,11 +1,17 @@
-<h2>会社情報</h2>
-<% @companies.each do |company| %>
-  <div>会社名: <%= company.name %></div>
-  <div>会社番号: <%= company.number %></div>
-  <div>会社番号<%= company.number %></div>
+<h2>会社登録</h2>
+
+<% if @company.errors.any? %>
+  <div> 
+    <h2>エラー</h2>
+    <p>以下のエラーが発生しました:</p>
+  </div>
+  <ul>
+    <% @company.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
 
-<h2>会社登録</h2>
 <%= form_with model: @company, url: admin_companies_path, local: true do |f| %>
   <div>
     <%= f.label :name %>
@@ -19,3 +25,11 @@
 
   <%= f.submit '登録' %>
 <% end %>
+
+<h2>会社情報</h2>
+<% @companies.each do |company| %>
+  <div>会社名: <%= company.name %></div>
+  <div>会社番号: <%= company.number %></div>
+  <div>会社番号<%= company.number %></div>
+<% end %>
+

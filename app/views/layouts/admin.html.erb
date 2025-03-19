@@ -24,7 +24,7 @@
 
   <body>
     <% if authenticated? %>
-      <%= link_to "ログアウト", sessions_path, method: :delete %>
+      <%= link_to "ログアウト", sessions_path, method: :delete, data: { turbo_method: :delete } %>
     <% else %>  
       <%= link_to "ログイン", new_sessions_path %>
     <% end %>
