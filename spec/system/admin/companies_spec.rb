@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "IRレポート", type: :system do
+RSpec.describe "会社情報", type: :system do
   let!(:admin) { Admin.create!(email_address: "test@example.com", password: "password") }
 
   before do 

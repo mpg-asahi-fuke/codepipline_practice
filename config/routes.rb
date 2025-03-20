@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   namespace :admin do
-    resources :companies
-    resources :ir_reports
+    resources :companies do
+      resources :ir_reports
+    end
   end
 end

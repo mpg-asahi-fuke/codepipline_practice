@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
-  validates :name,   presence: true
+  has_many :ir_reports, dependent: :destroy
+
+  validates :name, presence: true
   validates :number, presence: true
 end

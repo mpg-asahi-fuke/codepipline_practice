@@ -1,56 +1,52 @@
-<div class="container mt-4">
-    <h1>書類一覧</h1>
-
-    <div class="row mb-4">
-        <div class="col">
-            <%= form_with url: admin_documents_path, method: :get, class: 'form-inline', local: true do |f| %>
-                <div class="input-group">
-                    <%= f.text_field :search, value: params[:search], class: 'form-control', placeholder: '検索...' %>
-                    <div class="input-group-append">
-                        <%= f.submit '検索', class: 'btn btn-outline-secondary' %>
-                    </div>
-                </div>
-            <% end %>
-        </div>
-        <div class="col-auto">
-            <%= link_to '新規作成', new_admin_document_path, class: 'btn btn-primary' %>
-        </div>
-    </div>
-
-    <% if @documents.present? %>
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="thead-light">
-                    <tr>
-                        <th>タイトル</th>
-                        <th>作成日</th>
-                        <th>更新日</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @documents.each do |document| %>
-                        <tr>
-                            <td><%= document.title %></td>
-                            <td><%= document.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-                            <td><%= document.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
-                            <td>
-                                <%= link_to '表示', admin_document_path(document), class: 'btn btn-sm btn-info' %>
-                                <%= link_to '編集', edit_admin_document_path(document), class: 'btn btn-sm btn-warning' %>
-                                <%= link_to '削除', admin_document_path(document), method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'btn btn-sm btn-danger' %>
-                            </td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="pagination justify-content-center">
-            <%= paginate @documents if defined?(paginate) %>
-        </div>
-    <% else %>
-        <div class="alert alert-info">
-            書類が見つかりませんでした。
-        </div>
+<h2>IRレポート登録</h2>
+<% if @ir_report.errors.any? %>
+  <div> 
+    <h2>エラー</h2>
+  </div>
+  <ul>
+    <% @ir_report.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
-</div>
+  </ul>
+<% end %>
+
+<%= form_with model: @ir_report, url: admin_company_ir_reports_path(@company), local: true do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+  <%= f.label :published_at %>
+  <%= f.date_field :published_at %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.submit '登録' %>
+<% end %>
+
+<h2>IRレポート</h2>
+<table class="table table-striped table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th>公開日</th>
+            <th>作成日</th>
+            <th>更新日</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @ir_reports.each do |ir_report| %>
+            <tr>
+                <td><%= ir_report.title %></td>
+                <td><%= ir_report.content %></td>
+                <td><%= ir_report&.published_at&.strftime('%Y/%m/%d %H:%M') %></td>
+                <td><%= ir_report.url %></td>
+                <td><%= ir_report&.created_at&.strftime('%Y/%m/%d %H:%M') %></td>
+                <td><%= ir_report&.updated_at&.strftime('%Y/%m/%d %H:%M') %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
