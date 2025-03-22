@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :end_user do
-    resources :ir_reports, only: [:index]
+    resources :ir_reports, only: [ :index ]
     root "ir_reports#index"
   end
 end
